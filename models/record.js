@@ -5,8 +5,12 @@ const Category = require('./category')
 
 const recordSchema = new Schema({
   name: String,
-  category: { type: Schema.Types.ObjectId, ref: 'Category' },
-  date: Date,
+  category: {
+    _id: { type: Schema.Types.ObjectId, ref: 'Category' },
+    name: String,
+    image: String
+  },
+  date: String,
   amount: String,
 })
 

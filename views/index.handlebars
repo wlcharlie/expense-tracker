@@ -1,1 +1,44 @@
-<h5>YOOO</h5>
+<div class="container" style="width: 500px;">
+
+  <div class="my-4">
+    <form action="/">
+      <div class="form-group">
+        <select class="form-control" name="category" onchange="submit()">
+          <option value='' {{#is category '' }}selected{{/is}}>類別</option>
+          <option {{#is category '家居物業' }}selected{{/is}}>家居物業</option>
+          <option {{#is category '交通出行' }}selected{{/is}}>交通出行</option>
+          <option {{#is category '休閒娛樂' }}selected{{/is}}>休閒娛樂</option>
+          <option {{#is category '餐飲食品' }}selected{{/is}}>餐飲食品</option>
+          <option {{#is category '其他' }}selected{{/is}}>其他</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class=" d-flex justify-content-around">
+    <h3 class="align-top">總金額：</h3>
+    <h1>25840</h1>
+  </div>
+
+  <div class="container my-4">
+    {{#each record}}
+    <div class="row py-2 px-3">
+      <div class="col-2 d-flex align-items-center">
+        <i class="{{ this.category.image }}"></i>
+      </div>
+      <div class="col-8 d-flex flex-column">
+        <h5>{{ this.name }}</h5>
+        <h6>{{ this.date }}</h6>
+      </div>
+      <div class="col-2 d-flex justify-content-end align-items-center">
+        <h5>{{ this.amount }}</h5>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="container text-center">
+    <button type="button" class="btn btn-danger btn-lg">新增支出</button>
+  </div>
+
+</div>

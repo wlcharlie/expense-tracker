@@ -22,7 +22,7 @@ db.once('open', () => {
       .then(obj =>
         Record.create({
           name: each.name,
-          category: obj._id,
+          category: obj,
           date: each.date,
           amount: each.amount,
         })
