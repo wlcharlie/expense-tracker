@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars')
 const hbsHelpers = require('handlebars-helpers')
 const mongoose = require('mongoose')
 const Record = require('./models/record')
+const categoryFilter = require('./models/category-filter')
+const modifyRecord = require('./models/modify-record')
 
 const app = express()
 const helpers = hbsHelpers()
@@ -22,24 +24,33 @@ db.once('open', () => {
 
 app.engine('handlebars', exphbs({ helpers, defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   const category = req.query.category || ''
-  let filter = {}
 
-  if (category) {
-    filter = { 'category.name': category }
-  } else {
-    filter = {}
-  }
-
-  Record.find(filter)
+  Record.find(categoryFilter(category))
+    .sort({ date: 'desc' })
     .lean()
     .then(record => res.render('index', { record, category }))
     .catch(err => console.error(err))
 })
 
+
+app.get('/records/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/records', (req, res) => {
+
+  let newRecord = req.body
+  modifyRecord(newRecord)
+  setTimeout(() => {
+    res.redirect('/')
+  }, 1000);
+
+})
 
 
 app.listen(port, () => {
