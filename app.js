@@ -36,7 +36,11 @@ app.get('/', (req, res) => {
   Record.find(categoryFilter(category))
     .sort({ date: 'desc' })
     .lean()
-    .then(record => res.render('index', { record, category }))
+    .then(record => {
+      const total = []
+      record.forEach(data => total.push(Number(data.amount)))
+      res.render('index', { record, category, total })
+    })
     .catch(err => console.error(err))
 })
 
@@ -65,7 +69,7 @@ app.get('/records/:id/edit', (req, res) => {
 app.put('/records/:id', (req, res) => {
   modifyRecord(req.body, 'update', req.params.id)
   setTimeout(() => {
-    res.redirect('../')
+    res.redirect('/')
   }, 0000);
 })
 
