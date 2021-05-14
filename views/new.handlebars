@@ -33,11 +33,9 @@
       </div>
       <div class="col-8">
         <select class="form-control" id="category" name="category" required>
-          <option>家居物業</option>
-          <option>交通出行</option>
-          <option>休閒娛樂</option>
-          <option>餐飲食品</option>
-          <option>其他</option>
+          {{#each category}}
+          <option>{{ this.name }}</option>
+          {{/each}}
         </select>
       </div>
     </div>

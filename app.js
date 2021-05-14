@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 
 const Record = require('./models/record')
+const Category = require('./models/category')
 const categoryFilter = require('./models/category-filter')
 const modifyRecord = require('./models/modify-record')
 
@@ -31,22 +32,27 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
-  const category = req.query.category || ''
+  const categoryChoosen = req.query.category || ''
 
-  Record.find(categoryFilter(category))
+  Record.find(categoryFilter(categoryChoosen))
     .sort({ date: 'desc' })
     .lean()
     .then(record => {
       const total = []
       record.forEach(data => total.push(Number(data.amount)))
-      res.render('index', { record, category, total })
+      Category.find({})
+        .lean()
+        .then(category => res.render('index', { record, category, categoryChoosen, total }))
+
     })
     .catch(err => console.error(err))
 })
 
 
 app.get('/records/new', (req, res) => {
-  res.render('new')
+  Category.find({})
+    .lean()
+    .then(category => res.render('new', { category }))
 })
 
 app.post('/records', (req, res) => {
@@ -61,7 +67,8 @@ app.get('/records/:id/edit', (req, res) => {
     .lean()
     .then(record => {
       record.date = record.date.split('/').join('-')
-      res.render('edit', { record })
+      Category.find({}).lean().then(category => res.render('edit', { record, category }))
+      // res.render('edit', { record })
     })
     .catch(err => console.error(err))
 })

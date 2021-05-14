@@ -34,11 +34,9 @@
       </div>
       <div class="col-8">
         <select class="form-control" id="category" name="category" required>
-          <option {{#is record.category.name '家居物業' }}selected{{/is}}>家居物業</option>
-          <option {{#is record.category.name '交通出行' }}selected{{/is}}>交通出行</option>
-          <option {{#is record.category.name '休閒娛樂' }}selected{{/is}}>休閒娛樂</option>
-          <option {{#is record.category.name '餐飲食品' }}selected{{/is}}>餐飲食品</option>
-          <option {{#is record.category.name '其他' }}selected{{/is}}>其他</option>
+          {{#each category}}
+          <option {{#is ../record.category.name ./this.name }}selected{{/is}}>{{ this.name }}</option>
+          {{/each}}
         </select>
       </div>
     </div>
