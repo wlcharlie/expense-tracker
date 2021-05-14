@@ -1,5 +1,6 @@
 <div class="container" style="width: 500px;">
-  <form action="/records" method="POST">
+  <form action="/records/{{ record._id }}?_method=PUT" method="POST">
+
     <div class="my-5 row align-items-center">
       <div class="col-4 text-center">
         <p><i>*必填欄位</i></p>
@@ -14,7 +15,7 @@
         <label style="font-size: 1.2rem;" for="name">名稱*：</label>
       </div>
       <div class="col-8">
-        <input type="text" class="form-control" id="name" name="name" required>
+        <input type="text" class="form-control" id="name" name="name" required value={{ record.name }}>
       </div>
     </div>
 
@@ -23,7 +24,7 @@
         <label style="font-size: 1.2rem;" for="date">日期*：</label>
       </div>
       <div class="col-8">
-        <input type="date" class="form-control" id="date" name="date" required>
+        <input type="date" class="form-control" id="date" name="date" required value={{ record.date }}>
       </div>
     </div>
 
@@ -33,11 +34,11 @@
       </div>
       <div class="col-8">
         <select class="form-control" id="category" name="category" required>
-          <option {{#is category '家居物業' }}selected{{/is}}>家居物業</option>
-          <option {{#is category '交通出行' }}selected{{/is}}>交通出行</option>
-          <option {{#is category '休閒娛樂' }}selected{{/is}}>休閒娛樂</option>
-          <option {{#is category '餐飲食品' }}selected{{/is}}>餐飲食品</option>
-          <option {{#is category '其他' }}selected{{/is}}>其他</option>
+          <option {{#is record.category.name '家居物業' }}selected{{/is}}>家居物業</option>
+          <option {{#is record.category.name '交通出行' }}selected{{/is}}>交通出行</option>
+          <option {{#is record.category.name '休閒娛樂' }}selected{{/is}}>休閒娛樂</option>
+          <option {{#is record.category.name '餐飲食品' }}selected{{/is}}>餐飲食品</option>
+          <option {{#is record.category.name '其他' }}selected{{/is}}>其他</option>
         </select>
       </div>
     </div>
@@ -47,7 +48,8 @@
         <label style="font-size: 1.2rem;" for="amounnt">金額*：</label>
       </div>
       <div class="col-8">
-        <input type="number" class="form-control" id="amount" name="amount" min="1" step="1" required>
+        <input type="number" class="form-control" id="amount" name="amount" min="1" step="1" required value={{
+          record.amount }}>
       </div>
     </div>
 
@@ -55,7 +57,7 @@
       <div class="col-4 text-center">
       </div>
       <div class="col-8">
-        <button type="submit" class="btn btn-light btn-block">新增支出</button>
+        <button type="submit" class="btn btn-light btn-block">更新支出</button>
       </div>
     </div>
   </form>

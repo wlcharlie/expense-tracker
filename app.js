@@ -12,7 +12,7 @@ const app = express()
 const helpers = hbsHelpers()
 const port = 3000
 
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 const db = mongoose.connection
 
@@ -46,16 +46,33 @@ app.get('/records/new', (req, res) => {
 })
 
 app.post('/records', (req, res) => {
-  let newRecord = req.body
-  modifyRecord(newRecord)
+  modifyRecord(req.body, 'create')
   setTimeout(() => {
     res.redirect('/')
   }, 0000);
 })
 
+app.get('/records/:id/edit', (req, res) => {
+  Record.findById(req.params.id)
+    .lean()
+    .then(record => {
+      record.date = record.date.split('/').join('-')
+      res.render('edit', { record })
+    })
+    .catch(err => console.error(err))
+})
+
+app.put('/records/:id', (req, res) => {
+  modifyRecord(req.body, 'update', req.params.id)
+  setTimeout(() => {
+    res.redirect('../')
+  }, 0000);
+})
+
 app.delete('/records/:id', (req, res) => {
   Record.findByIdAndDelete(req.params.id)
-    .then(() => res.redirect(req.get('referer'))) //(分類頁面)哪裡刪除回到哪裡
+    .then(() => res.redirect(req.get('referer')))
+    .catch(err => console.error(err))
 })
 
 app.listen(port, () => {

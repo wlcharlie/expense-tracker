@@ -1,7 +1,7 @@
 const Category = require('./category')
 const Record = require('./record')
 
-function modifyRecord(theRecord) {
+function modifyRecord(theRecord, status, id) {
 
   theRecord.date = theRecord.date.split('-').join('/')
 
@@ -9,7 +9,18 @@ function modifyRecord(theRecord) {
     .lean()
     .then(obj => {
       theRecord.category = obj
-      Record.create(theRecord)
+
+      switch (status) {
+        case 'create':
+          Record.create(theRecord)
+            .catch(err => console.error(err))
+          break;
+        case 'update':
+          Record.findByIdAndUpdate(id, theRecord)
+            .catch(err => console.error(err))
+          break;
+      }
+
     })
 }
 
