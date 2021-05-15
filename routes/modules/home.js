@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
       Category.find({})
         .lean()
         .then(category => res.render('index', { record, category, categoryChoosen, total }))
-
     })
     .catch(err => console.error(err))
 })
