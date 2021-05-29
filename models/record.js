@@ -4,15 +4,15 @@ const Schema = mongoose.Schema
 const Category = require('./category')
 
 const recordSchema = new Schema({
-  name: String,
+  name: { type: String, require: true },
   category: {
-    _id: { type: Schema.Types.ObjectId, ref: 'Category' },
-    name: String,
-    image: String
+    _id: { type: Schema.Types.ObjectId, ref: 'Category', require: true },
+    name: { type: String, require: true },
+    image: { type: String, require: true }
   },
-  date: String,
-  merchant: String,
-  amount: String,
+  date: { type: String, require: true },
+  merchant: { type: String, require: true },
+  amount: { type: String, require: true },
 })
 
 module.exports = mongoose.model('Record', recordSchema)
