@@ -9,13 +9,26 @@
     background-color: #ffffff;
 }
 
-.dropright .btn-secondary {
-  border-radius: 0!important;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+.fas {
+  font-size: 1rem;
 }
 
-.fas {
-  font-size: 1.5rem;
-  color: #dd695b
+/* from W3School */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
