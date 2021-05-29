@@ -29,25 +29,33 @@
     <h1 style="font-size: 4rem; color: salmon">{{#sum totalAmount}}{{/sum}}</h1>
   </div>
 
-  <div class="my-4" style="width: 550px; height: 500px;overflow: auto">
+  <div class="my-4" style="width: 600px; height: 500px;overflow: auto">
     {{#each record}}
     <div class="d-flex record-row">
       <div class="row py-2 px-3" style="width: 100%;">
         <div class="col-1 d-flex align-items-center">
-          <i class="{{ this.category.image }}"></i>
+          <i class="category {{ this.category.image }}"></i>
         </div>
         <div class="col-7 d-flex flex-column justify-content-center">
           <h5>{{ this.name }}</h5>
-          <h6>{{ this.date }}</h6>
+          <h6>{{ this.date }} ‧
+            <i class="fas fa-map-marker-alt"></i> {{ this.merchant }}
+          </h6>
         </div>
         <div class="col-3 d-flex justify-content-end align-items-center">
-          <h5 class="mr-3">{{ this.amount }}</h5>
+          <h5>{{ this.amount }}</h5>
         </div>
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-light"><i class="fas fa-pen"></i></button>
-        <button class="btn btn-light"><i class="fas fa-trash-alt"></i></button>
+        <a class="btn btn-light d-flex align-items-center" href="/records/{{this._id}}/edit">
+          <i class="fas fa-pen"></i>
+        </a>
+        <form action="/records/{{this._id}}>_method=DELETE" method="post" class="d-inline-flex">
+          <button class="btn btn-light" type="submit">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </form>
       </div>
 
     </div>

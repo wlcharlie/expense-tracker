@@ -3,7 +3,7 @@
 
     <div class="my-5 row align-items-center">
       <div class="col-4 text-center">
-        <p><i>*必填欄位</i></p>
+        <p class="text-danger"><i>*必填欄位</i></p>
       </div>
       <div class="col-8 text-center">
         <h3>編輯支出</h3>
@@ -24,7 +24,7 @@
         <label style="font-size: 1.2rem;" for="merchant">店家：</label>
       </div>
       <div class="col-8">
-        <input type="text" class="form-control" id="merchant" name="merchant" value>
+        <input type="text" class="form-control" id="merchant" name="merchant" value={{ record.merchant}}>
       </div>
     </div>
 
