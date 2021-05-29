@@ -12,11 +12,11 @@ router.get('/', (req, res) => {
     .sort({ date: 'desc' })
     .lean()
     .then(record => {
-      const total = []
-      record.forEach(data => total.push(Number(data.amount)))
+      const totalAmount = []
+      record.forEach(data => totalAmount.push(Number(data.amount)))
       Category.find({})
         .lean()
-        .then(category => res.render('index', { record, category, categoryChoosen, total }))
+        .then(category => res.render('index', { record, category, categoryChoosen, totalAmount }))
     })
     .catch(err => console.error(err))
 })

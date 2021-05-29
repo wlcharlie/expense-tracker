@@ -11,6 +11,7 @@ const recordSchema = new Schema({
     image: String
   },
   date: String,
+  merchant: String,
   amount: String,
 })
 
