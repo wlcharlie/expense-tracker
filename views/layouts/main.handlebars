@@ -11,10 +11,13 @@
 
 <body style="background-color: #eeeeee">
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand mb-0 h1" href="/">老爸的私房錢</a>
+    <a class="navbar-brand mb-0 h1" href="/">
+      {{#if isAuthenticated}}{{user.name}}{{else}}我{{/if}}的私房錢</a>
+    {{#if isAuthenticated}}
     <a class="btn-group" href="/user/logout">
       <button class="btn btn-outline-danger">登出</button>
     </a>
+    {{/if}}
   </nav>
 
   {{{ body }}}
