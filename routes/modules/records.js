@@ -12,7 +12,8 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  modifyRecord(req.body, 'create')
+  const userId = req.user._id
+  modifyRecord(req.body, 'create', null, userId)
   setTimeout(() => {
     res.redirect('/')
   }, 0000);

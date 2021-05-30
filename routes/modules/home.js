@@ -7,8 +7,8 @@ const categoryFilter = require('../../models/category-filter')
 
 router.get('/', (req, res) => {
   const categoryChoosen = req.query.category || ''
-
-  Record.find(categoryFilter(categoryChoosen))
+  const userId = req.user._id
+  Record.find(categoryFilter(categoryChoosen, userId))
     .sort({ date: 'desc' })
     .lean()
     .then(record => {
@@ -16,7 +16,12 @@ router.get('/', (req, res) => {
       record.forEach(data => totalAmount.push(Number(data.amount)))
       Category.find({})
         .lean()
-        .then(category => res.render('index', { record, category, categoryChoosen, totalAmount }))
+        .then(category => res.render('index', {
+          record,
+          category,
+          categoryChoosen,
+          totalAmount,
+        }))
     })
     .catch(err => console.error(err))
 })
