@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Category = require('./category')
 
 const recordSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'User', index: true, require: true },
+  userId: { type: Schema.Types.ObjectId, ref: 'User', index: true, require: true },
   name: { type: String, require: true },
   category: {
     _id: { type: Schema.Types.ObjectId, ref: 'Category', require: true },

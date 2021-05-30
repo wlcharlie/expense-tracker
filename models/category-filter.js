@@ -1,8 +1,8 @@
-function categoryFilter(category) {
+function categoryFilter(category, userId) {
   if (category) {
-    return { 'category.name': category }
+    return { 'category.name': category, 'userId': userId }
   } else {
-    return {}
+    return { 'userId': userId }
   }
 }
 

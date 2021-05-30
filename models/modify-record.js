@@ -1,7 +1,7 @@
 const Category = require('./category')
 const Record = require('./record')
 
-function modifyRecord(theRecord, status, id) {
+function modifyRecord(theRecord, status, id, userId) {
 
   theRecord.date = theRecord.date.split('-').join('/')
 
@@ -9,7 +9,7 @@ function modifyRecord(theRecord, status, id) {
     .lean()
     .then(obj => {
       theRecord.category = obj
-
+      theRecord.userId = userId
       switch (status) {
         case 'create':
           Record.create(theRecord)
