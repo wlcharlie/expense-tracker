@@ -1,21 +1,32 @@
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const hbsHelpers = require('handlebars-helpers')
 const methodOverride = require('method-override')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const usePassport = require('./config/passport')
 const routes = require('./routes')
 require('./config/mongoose')
 
 const app = express()
 const helpers = hbsHelpers()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 app.engine('handlebars', exphbs({ helpers, defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+usePassport(app)
 app.use(routes)
 
 app.listen(port, () => {
