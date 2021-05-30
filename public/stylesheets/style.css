@@ -5,6 +5,7 @@
 .record-row:nth-child(odd) {
     background-color: #ffefef;
 }
+
 .record-row:nth-child(even) {
     background-color: #ffffff;
 }
@@ -31,4 +32,31 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+/* in user login */
+.social-block {
+  position: relative;
+}
+
+.social-title {
+  background-color: #eeeeee;
+  font-size: 15px;
+  font-style: italic;
+  padding: 2px 10px;
+  display: inline-block;
+  position: absolute;
+  top: -12px;
+  left: 44%
+}
+
+.social-title-sub {
+  background-color: #eeeeee;
+  font-size: 15px;
+  font-style: italic;
+  padding: 2px 10px;
+  display: inline-block;
+  position: absolute;
+  bottom: -17px;
+  left: 46%
 }
