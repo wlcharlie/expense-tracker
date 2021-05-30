@@ -4,16 +4,26 @@ const passport = require('passport')
 const User = require('../../models/user')
 
 router.get('/', (req, res) => {
+  console.log(req)
   res.render('user')
 })
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/user'
+  failureRedirect: '/user',
+  failureFlash: true
 }))
 
 router.post('/register', (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password, confirmPassword } = req.body
+  if (password !== confirmPassword) {
+    req.flash('errorRegMsg', '密碼與確認密碼不同')
+    return res.render('user', {
+      name,
+      email,
+    })
+  }
+
   User.create({
     name,
     email,

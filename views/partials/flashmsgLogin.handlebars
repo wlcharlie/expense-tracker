@@ -1,0 +1,13 @@
+{{#if warningMsg}}
+<div class="border rounded bg-danger my-2 d-flex align-items-center justify-content-center py-2">
+  <div class="text-white">{{warningMsg}}</div>
+</div>
+{{/if}}
+
+{{#if error}}
+{{#each error}}
+<div class="border rounded bg-warning my-2 d-flex align-items-center justify-content-center py-2">
+  <div class="text-muted">{{this}}</div>
+</div>
+{{/each}}
+{{/if}}

@@ -3,6 +3,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next()
     }
+    req.flash('warningMsg', '請先登入')
     res.redirect('/user')
   }
 }
