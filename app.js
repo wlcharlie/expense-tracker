@@ -34,8 +34,8 @@ app.use(flash())
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
-  res.locals.successMsg = req.flash('successMsg')
   res.locals.warningMsg = req.flash('warningMsg')
+  res.locals.successRegMsg = req.flash('successRegMsg')
   res.locals.errorRegMsg = req.flash('errorRegMsg')
   res.locals.error = req.flash('error')
   next()
