@@ -9,9 +9,9 @@ function modifyRecord(theRecord, status, id, userId) {
     .lean()
     .then(obj => {
       theRecord.category = obj
-      theRecord.userId = userId
       switch (status) {
         case 'create':
+          theRecord.userId = userId
           Record.create(theRecord)
             .catch(err => console.error(err))
           break;
@@ -20,7 +20,6 @@ function modifyRecord(theRecord, status, id, userId) {
             .catch(err => console.error(err))
           break;
       }
-
     })
 }
 

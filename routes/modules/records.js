@@ -30,7 +30,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  modifyRecord(req.body, 'update', req.params.id)
+  modifyRecord(req.body, 'update', req.params.id, null)
   setTimeout(() => {
     res.redirect('/')
   }, 0000);
