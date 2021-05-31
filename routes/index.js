@@ -7,11 +7,10 @@ const auth = require('./modules/authSocial')
 
 const { authenticator } = require('../middleware/auth')
 
+router.use('/records', authenticator, records)
 router.use('/user', user)
 router.use('/auth', auth)
 router.use('/', authenticator, home)
-router.use('/records', authenticator, records)
-
 
 
 module.exports = router
