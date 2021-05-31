@@ -5,10 +5,10 @@ const records = require('./modules/records')
 const user = require('./modules/user')
 const auth = require('./modules/authSocial')
 
-const { authenticator } = require('../middleware/auth')
+const { authenticator, reLogin } = require('../middleware/auth')
 
 router.use('/records', authenticator, records)
-router.use('/user', user)
+router.use('/user', reLogin, user)
 router.use('/auth', auth)
 router.use('/', authenticator, home)
 
