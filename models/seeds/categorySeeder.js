@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Category = require('../category')
 const categories = require('../sampleData/categories')
 const db = require('../../config/mongoose')
