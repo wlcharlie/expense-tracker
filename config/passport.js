@@ -37,10 +37,14 @@ module.exports = app => {
       .then(user => {
         if (user) return done(null, user)
 
-        User.create({
-          name,
-          email
-        })
+        const password = Math.random().toString(24).slice(-5)
+        bcrypt.genSalt(10)
+          .then(salt => bcrypt.hash(password, salt))
+          .then(hash => User.create({
+            name,
+            email,
+            password: hash
+          }))
           .then(user => done(null, user))
           .catch(err => done(err, false))
       })
