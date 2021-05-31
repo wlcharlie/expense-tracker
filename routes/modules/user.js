@@ -5,7 +5,6 @@ const User = require('../../models/user')
 const bcrypt = require('bcryptjs')
 
 router.get('/', (req, res) => {
-  console.log(req)
   res.render('user')
 })
 
