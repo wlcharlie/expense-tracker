@@ -9,6 +9,7 @@ const { authenticator } = require('./middleware/auth')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+
 const usePassport = require('./config/passport')
 const routes = require('./routes')
 require('./config/mongoose')
