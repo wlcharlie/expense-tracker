@@ -2,17 +2,24 @@
 
 老爸的錢自己管，記帳簡單自己來
 
+網址：https://powerful-savannah-25620.herokuapp.com/user
+
+測試帳號：example@email.com
+測試密碼：example
+
 ## 關於專案
 
 ### 專案畫面
-<img src="https://i.imgur.com/jlRLyHK.png">
+<img src="https://i.imgur.com/isQ9FtK.png">
+<img src="https://i.imgur.com/zgFnPha.png">
 
 ### 功能
 
 * 檢視所有記帳內容
 * 檢視記帳總金額
-* 分類記帳內容
+* 篩選記帳內容(分類/時間)
 * 新增/編輯/刪除記帳項目
+* 使用者註冊/登入/第三方登入
 
 ## 開始使用
 
@@ -59,10 +66,14 @@
 * [Bootstrap (4.1)](https://getbootstrap.com/)
 * [Express-Handlebars (5.3.2)](https://www.npmjs.com/package/express-handlebars)
 * [Fontawesome (kit code 5.15.3)](https://fontawesome.com/)
+* [connect-flash (0.1.1)]
 
-#### 資料庫相關
+#### 資料相關
 * [mongodb (4.4)](https://docs.mongodb.com/manual/)
 * [mongoose (5.12.7)](https://mongoosejs.com/)
+* [bcryptjs (2.4.3)]
+* [dotenv (10.0.0)]
+* [passport (0.4.1)] (with Strategy Facebook/Local)
 
 ## 關於我
 
