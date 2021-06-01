@@ -12,4 +12,5 @@ db.once('open', () => {
       console.log('DONE! Closing connection...')
       return db.close()
     })
+    .catch(err => console.error(err))
 })

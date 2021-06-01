@@ -19,6 +19,7 @@ db.once('open', () => {
         email: each.email,
         password: hash
       }))
+      .catch(err => console.error(err))
   ))
 
 
@@ -38,6 +39,7 @@ db.once('open', () => {
               amount: each.amount
             })
           })
+          .catch(err => console.error(err))
       })
   }))
 
@@ -45,5 +47,5 @@ db.once('open', () => {
 
   setTimeout(() => {
     return db.close()
-  }, 3000);
+  }, 5000);
 })
