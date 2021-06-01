@@ -1,6 +1,6 @@
-# 老爸的私房錢
+# 我的亂花錢 個人記帳本
 
-老爸的錢自己管，記帳簡單自己來
+我的錢自己管，記帳簡單自己來
 
 網址：https://powerful-savannah-25620.herokuapp.com/user
 
