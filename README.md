@@ -10,7 +10,7 @@
 ## 關於專案
 
 ### 專案畫面
-<img src="https://i.imgur.com/isQ9FtK.png">
+<img src="https://i.imgur.com/oDy3HZl.png">
 <img src="https://i.imgur.com/zgFnPha.png">
 
 ### 功能
