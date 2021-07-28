@@ -2,24 +2,18 @@ const Category = require("../models/category")
 const Record = require("../models/record")
 
 const modifyRecord = async (theRecord, status, id, userId) => {
+  const category = await Category.findOne({ name: theRecord.category }).lean()
   theRecord.date = theRecord.date.split("-").join("/")
-
-  Category.findOne({ name: theRecord.category })
-    .lean()
-    .then((obj) => {
-      theRecord.category = obj
-      switch (status) {
-        case "create":
-          theRecord.userId = userId
-          Record.create(theRecord).catch((err) => console.error(err))
-          break
-        case "update":
-          Record.findByIdAndUpdate(id, theRecord).catch((err) =>
-            console.error(err)
-          )
-          break
-      }
-    })
+  theRecord.categoryId = category._id
+  switch (status) {
+    case "create":
+      theRecord.userId = userId
+      await Record.create(theRecord)
+      break
+    case "update":
+      await Record.findByIdAndUpdate(id, theRecord)
+      break
+  }
 }
 
 module.exports = modifyRecord

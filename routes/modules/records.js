@@ -5,18 +5,14 @@ const Record = require("../../models/record")
 const Category = require("../../models/category")
 const modifyRecord = require("../../utils/modify-record")
 
-router.get("/new", (req, res) => {
-  Category.find({})
-    .lean()
-    .then((category) => res.render("new", { category }))
+router.get("/new", async (req, res) => {
+  const category = await Category.find({}).lean()
+  return res.render("new", { category })
 })
 
-router.post("/", (req, res) => {
-  const userId = req.user._id
-  modifyRecord(req.body, "create", null, userId)
-  setTimeout(() => {
-    res.redirect("/")
-  }, 0000)
+router.post("/", async (req, res) => {
+  await modifyRecord(req.body, "create", null, req.user._id)
+  return res.redirect("/")
 })
 
 router.get("/:id/edit", (req, res) => {
@@ -31,11 +27,9 @@ router.get("/:id/edit", (req, res) => {
     .catch((err) => console.error(err))
 })
 
-router.put("/:id", (req, res) => {
-  modifyRecord(req.body, "update", req.params.id, null)
-  setTimeout(() => {
-    res.redirect("/")
-  }, 0000)
+router.put("/:id", async (req, res) => {
+  await modifyRecord(req.body, "update", req.params.id, null)
+  return res.redirect("/")
 })
 
 router.delete("/:id", (req, res) => {
