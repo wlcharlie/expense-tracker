@@ -1,10 +1,64 @@
-<div class="container shadow-sm mt-2">
+<div class="container mt-2">
   <div class="row align-items-center">
 
     <div class="col-lg-5">
-      <form action="/">
+      <div id="accordion" class="d-lg-none">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseOne" >
+                功能選單
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse"  data-parent="#accordion">
+            <div class="card-body">
+              <form action="/" class="shadow-sm rounded bg-light p-3">
+                <div class="d-flex  text-center my-3 py-3  justify-content-center align-items-center">
+                  <div class="input-group mb-0 w-75">
+                    <div class="input-group-prepend">
+                      <i class="fas fa-search text-muted input-group-text"></i>
+                    </div>
+                    <input class="form-control" type="text" placeholder="搜尋" name="search" onchange="submit()" value="{{search}}"
+                      required>
+                    <div class="input-group-append">
+                      <button class="btn btn-info" type="button">搜尋</button>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="d-flex  text-center my-3 py-3  justify-content-center align-items-center">
+                  <div class="form-group mx-1 mb-0">
+                    <input type="month" class="form-control" name="time" placeholder="月份" onchange="submit()" value="{{time}}">
+                  </div>
+                  <div class="form-group mx-1 mb-0">
+                    <select class="form-control" name="category" onchange="submit()">
+                      <option value='' {{#is category '' }}selected{{/is}}>類別</option>
+                      {{#each category}}
+                      <option {{#is ../categoryId ./this._id }}selected{{/is}} value={{this._id}}>{{ this.name }}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              
+                <div class="d-flex rounded text-center my-3 py-3 justify-content-center align-items-center">
+                  <a href="/" class="mx-3">
+                    <button type="button" class="btn btn-info">顯示全部</button>
+                  </a>
+                  <a href="/records/new" class="d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn btn-danger">新增支出</button>
+                  </a>
+                </div>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form action="/" class="shadow-sm rounded bg-light p-3 d-none d-lg-block">
 
-        <div class="d-flex rounded text-center my-3 py-3 bg-light justify-content-center align-items-center">
+        <div class="d-flex  text-center my-3 py-3  justify-content-center align-items-center">
           <div class="input-group mb-0 w-75">
             <div class="input-group-prepend">
               <i class="fas fa-search text-muted input-group-text"></i>
@@ -17,7 +71,7 @@
           </div>
         </div>
 
-        <div class="d-flex rounded text-center my-3 py-3 bg-light justify-content-center align-items-center">
+        <div class="d-flex  text-center my-3 py-3  justify-content-center align-items-center">
           <div class="form-group mx-1 mb-0">
             <input type="month" class="form-control" name="time" placeholder="月份" onchange="submit()" value="{{time}}">
           </div>
@@ -31,7 +85,7 @@
           </div>
         </div>
 
-        <div class="d-flex rounded text-center my-3 py-3 bg-light justify-content-center align-items-center">
+        <div class="d-flex rounded text-center my-3 py-3 justify-content-center align-items-center">
           <a href="/" class="mx-3">
             <button type="button" class="btn btn-info">顯示全部</button>
           </a>
@@ -46,7 +100,7 @@
     <div class="col-lg-7 py-5">
 
       <div>
-        <div class="row p-2">
+        <div class="row p-2 bg-light shadow-sm rounded">
           <div class="col-4 d-flex justify-content-center align-items-center">
             <div>
               <h6>{{time}}{{#if time}}｜{{else}}全部の{{/if}}{{categoryChoosen}}</h6>

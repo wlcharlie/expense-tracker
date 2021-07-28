@@ -1,13 +1,13 @@
 .col-4 label {
-  margin-bottom: 0!important
+  margin-bottom: 0 !important;
 }
 
 .record-row:nth-child(odd) {
-    background-color: #ffefef;
+  background-color: #ffefef;
 }
 
 .record-row:nth-child(even) {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .category.fas {
@@ -21,17 +21,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* in user login */
@@ -47,7 +47,7 @@
   display: inline-block;
   position: absolute;
   top: -12px;
-  left: 45.5%
+  left: 45.5%;
 }
 
 .social-title-sub {
@@ -58,5 +58,13 @@
   display: inline-block;
   position: absolute;
   bottom: -17px;
-  left: 47%
+  left: 47%;
+}
+
+footer {
+  width: 100%;
+  height: 36px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
