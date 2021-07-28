@@ -68,3 +68,20 @@ footer {
   left: 0;
   bottom: 0;
 }
+
+@keyframes record {
+  from {
+    opacity: 0;
+    top: 20px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.ani-record {
+  position: relative;
+  animation: record;
+  animation-duration: 1s;
+}
