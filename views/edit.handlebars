@@ -38,10 +38,11 @@
         <label style="font-size: 1.2rem;" for="category">類別*：</label>
       </div>
       <div class="col-8">
-        <select class="form-control border-0" id="category" name="category" required>
+        <select class="form-control border-0" id="category" name="categoryId" required>
           {{#each category}}
-          <option{{#is ../record.category.name ./this.name }}selected{{/is}}>{{ this.name }}</option>
-            {{/each}}
+          <option {{#is ../record.categoryId.name ./this.name }}selected{{/is}} value={{this._id}}>{{ this.name }}</option>
+          
+          {{/each}}
         </select>
       </div>
     </div>

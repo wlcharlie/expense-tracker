@@ -15,16 +15,14 @@ router.post("/", async (req, res) => {
   return res.redirect("/")
 })
 
-router.get("/:id/edit", (req, res) => {
-  Record.findById(req.params.id)
+router.get("/:id/edit", async (req, res) => {
+  const record = await Record.findById(req.params.id)
+    .populate("categoryId")
     .lean()
-    .then((record) => {
-      record.date = record.date.split("/").join("-")
-      Category.find({})
-        .lean()
-        .then((category) => res.render("edit", { record, category }))
-    })
-    .catch((err) => console.error(err))
+  const category = await Category.find({}).lean()
+  console.log(record)
+  record.date = record.date.split("/").join("-")
+  return res.render("edit", { record, category })
 })
 
 router.put("/:id", async (req, res) => {

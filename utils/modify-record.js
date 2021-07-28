@@ -2,9 +2,8 @@ const Category = require("../models/category")
 const Record = require("../models/record")
 
 const modifyRecord = async (theRecord, status, id, userId) => {
-  const category = await Category.findOne({ name: theRecord.category }).lean()
+  console.log(theRecord)
   theRecord.date = theRecord.date.split("-").join("/")
-  theRecord.categoryId = category._id
   switch (status) {
     case "create":
       theRecord.userId = userId
