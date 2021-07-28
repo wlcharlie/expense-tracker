@@ -1,45 +1,47 @@
-const express = require('express')
+const express = require("express")
 const router = express.Router()
 
-const Record = require('../../models/record')
-const Category = require('../../models/category')
-const modifyRecord = require('../../models/modify-record')
+const Record = require("../../models/record")
+const Category = require("../../models/category")
+const modifyRecord = require("../../utils/modify-record")
 
-router.get('/new', (req, res) => {
+router.get("/new", (req, res) => {
   Category.find({})
     .lean()
-    .then(category => res.render('new', { category }))
+    .then((category) => res.render("new", { category }))
 })
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   const userId = req.user._id
-  modifyRecord(req.body, 'create', null, userId)
+  modifyRecord(req.body, "create", null, userId)
   setTimeout(() => {
-    res.redirect('/')
-  }, 0000);
+    res.redirect("/")
+  }, 0000)
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get("/:id/edit", (req, res) => {
   Record.findById(req.params.id)
     .lean()
-    .then(record => {
-      record.date = record.date.split('/').join('-')
-      Category.find({}).lean().then(category => res.render('edit', { record, category }))
+    .then((record) => {
+      record.date = record.date.split("/").join("-")
+      Category.find({})
+        .lean()
+        .then((category) => res.render("edit", { record, category }))
     })
-    .catch(err => console.error(err))
+    .catch((err) => console.error(err))
 })
 
-router.put('/:id', (req, res) => {
-  modifyRecord(req.body, 'update', req.params.id, null)
+router.put("/:id", (req, res) => {
+  modifyRecord(req.body, "update", req.params.id, null)
   setTimeout(() => {
-    res.redirect('/')
-  }, 0000);
+    res.redirect("/")
+  }, 0000)
 })
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   Record.findByIdAndDelete(req.params.id)
-    .then(() => res.redirect(req.get('referer')))
-    .catch(err => console.error(err))
+    .then(() => res.redirect(req.get("referer")))
+    .catch((err) => console.error(err))
 })
 
 module.exports = router

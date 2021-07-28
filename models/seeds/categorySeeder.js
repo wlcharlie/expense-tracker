@@ -1,16 +1,16 @@
-require('dotenv').config()
-const Category = require('../category')
-const categories = require('../sampleData/categories')
-const db = require('../../config/mongoose')
+require("dotenv").config()
+const Category = require("../category")
+const categories = require("../sampleData/categories")
+const db = require("../../config/mongoose")
 
+db.once("open", async () => {
+  console.log("ON! running categorySeeder...")
 
-db.once('open', () => {
-  console.log('ON! running categorySeeder...')
-
-  Category.create(categories)
-    .then(() => {
-      console.log('DONE! Closing connection...')
-      return db.close()
-    })
-    .catch(err => console.error(err))
+  try {
+    await Category.create(categories)
+    console.log("DONE")
+    return db.close()
+  } catch (error) {
+    throw new Error(error)
+  }
 })
