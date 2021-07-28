@@ -11,7 +11,7 @@
 
 ### 專案畫面
 
-<img src="h./demo.png">
+<img src="./demo.png">
 
 ### 功能
 
