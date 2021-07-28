@@ -30,10 +30,9 @@ router.put("/:id", async (req, res) => {
   return res.redirect("/")
 })
 
-router.delete("/:id", (req, res) => {
-  Record.findByIdAndDelete(req.params.id)
-    .then(() => res.redirect(req.get("referer")))
-    .catch((err) => console.error(err))
+router.delete("/:id", async (req, res) => {
+  await Record.findByIdAndDelete(req.params.id)
+  return res.redirect(req.get("referer"))
 })
 
 module.exports = router
