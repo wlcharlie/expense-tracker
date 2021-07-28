@@ -11,8 +11,10 @@ const recordSchema = new Schema({
     require: true,
   },
   name: { type: String, require: true },
-  category: {
-    _id: { type: Schema.Types.ObjectId, ref: "Category", require: true },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+    require: true,
   },
   date: { type: String, require: true },
   merchant: { type: String, require: true },
