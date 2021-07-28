@@ -20,12 +20,12 @@ router.get("/", async (req, res) => {
       .lean()
 
     if (time) {
-      record.filter(
+      record = record.filter(
         (each) => each.date.includes(year) && each.date.includes(month)
       )
     }
     if (search) {
-      record.filter((each) => each.name.includes(search))
+      record = record.filter((each) => each.name.includes(search))
     }
 
     const totalAmount = record.map((each) => each.amount)
