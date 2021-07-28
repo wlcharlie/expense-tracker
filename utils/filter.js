@@ -1,11 +1,9 @@
-function categoryFilter(category, userId) {
-  if (category) {
-    return { 'category.name': category, 'userId': userId }
+function categoryFilter(categoryId, userId) {
+  if (categoryId) {
+    return { categoryId: categoryId, userId: userId }
   } else {
-    return { 'userId': userId }
+    return { userId: userId }
   }
 }
-
-
 
 module.exports = categoryFilter

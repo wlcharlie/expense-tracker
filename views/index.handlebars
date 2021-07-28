@@ -25,7 +25,7 @@
             <select class="form-control" name="category" onchange="submit()">
               <option value='' {{#is category '' }}selected{{/is}}>類別</option>
               {{#each category}}
-              <option {{#is ../categoryChoosen ./this.name }}selected{{/is}}>{{ this.name }}</option>
+              <option {{#is ../categoryId ./this._id }}selected{{/is}} value={{this._id}}>{{ this.name }}</option>
               {{/each}}
             </select>
           </div>
@@ -65,7 +65,7 @@
         <div class="d-flex record-row">
           <div class="row py-2 px-3" style="width: 100%;">
             <div class="col-1 d-flex align-items-center">
-              <i class="category {{ this.category.image }}"></i>
+              <i class="category {{ this.categoryId.image }}"></i>
             </div>
             <div class="col-7 d-flex flex-column justify-content-center">
               <h5>{{ this.name }}</h5>
@@ -90,6 +90,9 @@
           </div>
         </div>
         {{/each}}
+        {{#unless record}}
+        <h5 class="alert-danger rounded text-center py-2">太棒了! 目前還沒花到錢!</h5>
+        {{/unless}}
 
       </div>
 
