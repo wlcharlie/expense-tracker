@@ -21,14 +21,16 @@ router.get("/", async (req, res) => {
 
     if (time) {
       record = record.filter(
-        (each) => each.date.includes(year) && each.date.includes(month)
+        each => each.date.includes(year) && each.date.includes(month)
       )
     }
     if (search) {
-      record = record.filter((each) => each.name.includes(search))
+      record = record.filter(each => each.name.includes(search))
     }
 
-    const totalAmount = record.map((each) => each.amount)
+    const totalAmount = record.map(each => each.amount)
+    const categoryChoosen =
+      categoryId && category.filter(e => e._id.equals(categoryId))[0].name
 
     return res.render("index", {
       record,
@@ -37,6 +39,7 @@ router.get("/", async (req, res) => {
       totalAmount,
       category,
       categoryId,
+      categoryChoosen,
     })
   } catch (error) {
     throw new Error(error)
